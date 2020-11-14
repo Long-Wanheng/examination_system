@@ -1,11 +1,14 @@
 package com.examination_system.dao.base;
 
+import com.examination_system.utils.LogUtil;
+
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * @program examination-system
@@ -14,6 +17,8 @@ import java.util.List;
  * @create: 2020/11/14 12:51
  */
 public class BeanListHandler<T> implements IResultSetHandler<List<T>> {
+    private static final Logger LOGGER = LogUtil.getLogger();
+
     private Class<T> clazz;
 
     public BeanListHandler(Class<T> clazz) {
@@ -46,6 +51,7 @@ public class BeanListHandler<T> implements IResultSetHandler<List<T>> {
             }
             return list;
         } catch (Exception e) {
+            LOGGER.info("BeanListHandler|handle error: " + e.getMessage());
             return null;
         }
     }

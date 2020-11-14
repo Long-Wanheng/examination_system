@@ -87,4 +87,15 @@ public class User implements Serializable {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userNo='" + userNo + '\'' +
+                ", userType=" + userType +
+                ", isDelete=" + isDelete +
+                '}';
+    }
 }

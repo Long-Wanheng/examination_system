@@ -84,4 +84,15 @@ public class UserQuery extends BaseParam<UserQuery> {
     public void setIsDelete(Integer isDelete) {
         this.isDelete = isDelete;
     }
+
+    @Override
+    public String toString() {
+        return "UserQuery{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userNo='" + userNo + '\'' +
+                ", userType=" + userType +
+                ", isDelete=" + isDelete +
+                '}';
+    }
 }

@@ -1,17 +1,19 @@
-package com.examination_system.dao;
+package com.examination_system.service;
 
 import com.examination_system.model.entity.User;
 import com.examination_system.model.query.UserQuery;
+import com.examination_system.utils.TableData;
 
 import java.util.List;
 
 /**
  * @program examination-system
- * @description: exam_user操作数据库dao层接口
+ * @description: 用户服务
  * @author: yao
- * @create: 2020/11/14 13:21
+ * @create: 2020/11/14 15:50
  */
-public interface UserDao {
+public interface UserService {
+
     /**
      * 根据主键id查询用户实体类
      *
@@ -53,6 +55,15 @@ public interface UserDao {
     User getByName(String name);
 
     /**
+     * 根据用户名查询用户实体类
+     *
+     * @param name     用户名
+     * @param password 密码
+     * @return User
+     */
+    User getLoginUser(String name, String password);
+
+    /**
      * 根据查询条件用户实体类集合
      *
      * @param param 查询条件
@@ -61,18 +72,11 @@ public interface UserDao {
     List<User> queryList(UserQuery param);
 
     /**
-     * 根据查询条件分页用户实体类集合
+     * 根据查询条件分页用户实体类信息
      *
      * @param param 主键id
-     * @return List<User>
+     * @return TableData<User>
      */
-    List<User> queryListByPage(UserQuery param);
+    TableData<User> queryListByPage(UserQuery param);
 
-    /**
-     * 根据查询条件分页用户实总条数
-     *
-     * @param param 主键id
-     * @return Integer
-     */
-    Integer queryPageCount(UserQuery param);
 }
