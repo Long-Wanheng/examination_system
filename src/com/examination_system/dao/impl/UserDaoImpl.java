@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public User getById(Long id) {
-        String sql = SELECT_COLUMNS + "  where id = ?";
+        String sql = SELECT_COLUMNS + " from exam_sys_user  where id = ?";
         List<Object> params = new ArrayList<>();
         params.add(id);
         return CRUDTemplate.executeQuery(sql, new BeanHandler<>(User.class), params);
@@ -42,7 +42,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public int add(User user) {
-        String sql = "INSERT INTO user (name,user_no,user_type,password,is_delete) VALUES (?,?,?,?,0)";
+        String sql = "INSERT INTO exam_sys_user (name,user_no,user_type,password,is_delete) VALUES (?,?,?,?,0)";
         List<Object> param = new ArrayList<>();
         param.add(user.getName());
         param.add(user.getUserNo());
@@ -59,7 +59,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public int update(User user) {
-        String sql = "UPDATE user set name = ?,user_no = ?,user_type = ?, password = ? WHERE id = ?";
+        String sql = "UPDATE exam_sys_user set name = ?,user_no = ?,user_type = ?, password = ? WHERE id = ?";
         List<Object> param = new ArrayList<>();
         param.add(user.getName());
         param.add(user.getUserNo());
@@ -71,7 +71,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int delete(Long id) {
-        String sql = "UPDATE user set is_delete = 1, password WHERE id = ?";
+        String sql = "UPDATE exam_sys_user set is_delete = 1, password WHERE id = ?";
         List<Object> param = new ArrayList<>();
         param.add(id);
         return CRUDTemplate.executeUpdate(sql, param);
@@ -80,12 +80,12 @@ public class UserDaoImpl implements UserDao {
     /**
      * 根据主键id删除用户
      *
-     * @param id 主键id
+     * @param name 主键id
      * @return int
      */
     @Override
     public User getByName(String name) {
-        String sql = SELECT_COLUMNS + "  where name = ?";
+        String sql = SELECT_COLUMNS + " from exam_sys_user  where name = ?";
         List<Object> param = new ArrayList<>();
         param.add(name);
         return CRUDTemplate.executeQuery(sql, new BeanHandler<>(User.class), param);
@@ -94,12 +94,12 @@ public class UserDaoImpl implements UserDao {
     /**
      * 根据用户名查询用户实体类
      *
-     * @param name 用户名
+     * @param query 用户名
      * @return User
      */
     @Override
     public List<User> queryList(UserQuery query) {
-        String sql = SELECT_COLUMNS + "  where  1=1 ";
+        String sql = SELECT_COLUMNS + " from exam_sys_user  where  1=1 ";
 
         List<Object> param = new ArrayList<>();
         setParam(sql, param, query);
@@ -118,7 +118,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public List<User> queryListByPage(UserQuery query) {
-        String sql = SELECT_COLUMNS + "  where  1=1 ";
+        String sql = SELECT_COLUMNS + " from exam_sys_user where  1=1 ";
         List<Object> param = new ArrayList<>();
         setParam(sql, param, query);
         sql = sql + " limit " + query.getLimit() + ", offset " + query.getOffset();
@@ -137,7 +137,7 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public Integer queryPageCount(UserQuery query) {
-        String sql = SELECT_COLUMNS + "  where  1=1 ";
+        String sql = SELECT_COLUMNS + " from exam_sys_user where  1=1 ";
         List<Object> param = new ArrayList<>();
         setParam(sql, param, query);
         sql = sql + " limit " + query.getLimit() + ", offset " + query.getOffset();

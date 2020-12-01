@@ -96,8 +96,11 @@ public class UserServiceImpl implements UserService {
         if (user == null) {
             return null;
         }
-        String md5 = Md5Util.md5(user.getPassword());
-        return null;
+        String md5 = Md5Util.md5(password);
+        if (!md5.equals(user.getPassword())){
+            return null;
+        }
+        return user;
     }
 
     /**

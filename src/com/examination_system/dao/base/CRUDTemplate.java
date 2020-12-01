@@ -26,7 +26,7 @@ public class CRUDTemplate {
         int result = 0;
         try {
             //获取数据库连接对象
-            conn = JDBCUtil.getConn();
+            conn = com.examination_system.dao.base.JDBCUtil.getConn();
             //获取预编译语句对象
             psmt = conn.prepareStatement(sql);
             //给预编译语句赋值
@@ -41,7 +41,7 @@ public class CRUDTemplate {
             e.printStackTrace();
         } finally {
             //关闭数据库连接
-            JDBCUtil.close(conn, psmt, null);
+            com.examination_system.dao.base.JDBCUtil.close(conn, psmt, null);
         }
         return result;
     }
@@ -61,7 +61,7 @@ public class CRUDTemplate {
         ResultSet rs = null;
         try {
             //获取数据库连接对象
-            conn = JDBCUtil.getConn();
+            conn = com.examination_system.dao.base.JDBCUtil.getConn();
             //获取预编译语句对象
             psmt = conn.prepareStatement(sql);
             //给预编译语句赋值

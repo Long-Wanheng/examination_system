@@ -1,9 +1,6 @@
 package com.examination_system.dao.base;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.*;
-import java.util.Properties;
 
 /**
  * JDBC工具类
@@ -19,25 +16,15 @@ public class JDBCUtil {
     //静态代码块，在程序编译的时候执行
     static {
         try {
-            //创建Properties对象
-            Properties p = new Properties();
-            //获取文件输入流
-            InputStream in = new FileInputStream("db.properties");
-            //加载输入流
-            p.load(in);
             //获取数据库连接驱动名字
-            driver = p.getProperty("driverClassName",null);
+            driver = "com.mysql.jdbc.Driver";
             //获取数据库连接地址
-            url = p.getProperty("url",null);
+            url = "jdbc:mysql://localhost:3306/com.examination_system.examination_system?useSSL=false&characterEncoding=utf-8";
             //获取数据库连接用户名
-            username = p.getProperty("username",null);
+            username = "root";
             //获取数据库连接密码
-            password = p.getProperty("password",null);
-            if(driver != null && url != null
-                    && username != null && password != null){
-                //加载驱动
-                Class.forName(driver);
-            }
+            password = "mysqlroot";
+            Class.forName(driver);
         } catch (Exception e) {
             e.printStackTrace();
         }
